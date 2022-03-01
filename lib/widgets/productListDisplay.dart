@@ -46,19 +46,17 @@ class _productListDispalyState extends State<productListDispaly> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Scrollbar(
-        isAlwaysShown: false,
-        controller: _scrollController,
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-            ),
-            itemCount: products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildCard(products[index]);
-            }),
-      ),
+    return Scrollbar(
+      isAlwaysShown: false,
+      controller: _scrollController,
+      child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildCard(products[index]);
+          }),
     );
   }
 }

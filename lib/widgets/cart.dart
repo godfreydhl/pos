@@ -59,12 +59,11 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Scrollbar(
-            isAlwaysShown: true,
-            controller: _scrollController,
-            child: ListView(
-              children: [...cart.map((e) => CartItem(product: e))],
-            )));
+    return Scrollbar(
+        isAlwaysShown: true,
+        controller: _scrollController,
+        child: ListView(
+          children: [...cart.map((e) => CartItem(product: e))],
+        ));
   }
 }

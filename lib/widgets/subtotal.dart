@@ -10,7 +10,7 @@ class Subtotal extends StatefulWidget {
 class _SubtotalState extends State<Subtotal> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
       child: Column(
         children: [

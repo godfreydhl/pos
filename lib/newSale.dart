@@ -24,6 +24,7 @@ class _NewSaleState extends State<NewSale> {
 
       body: Column(children: [
         Container(
+          height: 50,
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,16 +38,19 @@ class _NewSaleState extends State<NewSale> {
             ],
           ),
         ),
-        Row(
-          children: [
-            const productListDispaly(),
-            SizedBox(
-              width: 280,
-              child: Column(
-                children: const [Cart(), Subtotal()],
-              ),
-            )
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              // ignore: prefer_const_constructors
+              Expanded(child: const productListDispaly()),
+              SizedBox(
+                width: 280,
+                child: Column(
+                  children: const [Expanded(child: Cart()), Subtotal()],
+                ),
+              )
+            ],
+          ),
         )
       ]),
       // This trailing comma makes auto-formatting nicer for build methods.
