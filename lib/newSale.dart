@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'mainDrawer.dart';
 import 'currencySwitch.dart';
-import 'Product.dart';
-import 'ProductList.dart';
+import 'data/data.dart';
+import 'widgets/widgets.dart';
 
 class NewSale extends StatefulWidget {
   const NewSale({Key? key, required this.title}) : super(key: key);
@@ -14,27 +14,6 @@ class NewSale extends StatefulWidget {
 }
 
 class _NewSaleState extends State<NewSale> {
-  Widget _buildCard(Product product) {
-    return Card(
-        elevation: 8,
-        child: SizedBox(
-          height: 25,
-          width: 25,
-          child: InkWell(
-            onTap: () {
-              null;
-            },
-            child: Column(
-              children: [
-                Text(product.name),
-                Text(product.unit),
-                Text(product.price.toString()),
-              ],
-            ),
-          ),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,129 +22,31 @@ class _NewSaleState extends State<NewSale> {
       ),
       drawer: const MainDrawer(),
 
-      body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Order #00001'),
-                  Container(
-                    width: 200,
-                    child: const CurrencySwitch(),
-                  ),
-                const Text('Date'),
-              ],
-              ),
-            ),
+      body: Column(children: [
         Container(
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GridView.builder(
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                  ),
-                  itemCount: products.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _buildCard(products[index]);
-                  }),
+              const Text('Order #00001'),
               Container(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 200,
-                      child: ListView(
-                        children: [
-                          ListTile(
-                            title: const Text('New Sale'),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: const Text('Inventory'),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: const Text('Accounts'),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: const Text('Transactions'),
-                            onTap: () {},
-                          ),
-                          ListTile(
-                            title: const Text('Settings'),
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('Total'),
-                              const Text('100.00')
-                            ],
-                          ),
-                          Container(
-                              padding: const EdgeInsets.only(left: 16, top: 24),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  null;
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16, horizontal: 80),
-                                  child: const Text(
-                                    'Sign Out',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.blue),
-                                ),
-                              )),
-                          Container(
-                              padding: const EdgeInsets.only(left: 16, top: 24),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  null;
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16, horizontal: 80),
-                                  child: const Text(
-                                    'Sign Out',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.blue),
-                                ),
-                              )),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              )
+                width: 200,
+                child: const CurrencySwitch(),
+              ),
+              const Text('Date'),
             ],
           ),
+        ),
+        Row(
+          children: [
+            const productListDispaly(),
+            SizedBox(
+              width: 280,
+              child: Column(
+                children: const [Cart(), Subtotal()],
+              ),
+            )
+          ],
         )
       ]),
       // This trailing comma makes auto-formatting nicer for build methods.
